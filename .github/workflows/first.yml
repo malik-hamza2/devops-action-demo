@@ -1,15 +1,17 @@
-name: Run Python App
+name: Docker Build Pipeline
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
-  run-app:
+  docker-build:
     runs-on: windows-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Python script
-        run: python app.py
+      - name: Build Docker image
+        run: docker build -t my-app .
